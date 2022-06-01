@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.example.listviewpractice.R
 import com.example.listviewpractice.datas.Student
 
@@ -16,7 +17,7 @@ class StudentAdapter(
 
     val inf = LayoutInflater.from(mContext)
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+    override fun getView(position: Int, convertView: View?,  parent: ViewGroup): View {
 
         var temprow = convertView
         if(temprow == null) {
@@ -24,6 +25,20 @@ class StudentAdapter(
         }
 
         val row = temprow!!
+
+        val studentDate = mList[position]
+
+        val nameTxt = row.findViewById<TextView>(R.id.nameTxt)
+        val birthYearTxt = row.findViewById<TextView>(R.id.birthYearTxt)
+
+        nameTxt.text = studentDate.name
+
+//      출생년도로 한국식 나이 변환하여 보여주기
+
+        val koreanAge = 2022 - studentDate.birthYear + 1
+
+        birthYearTxt.text = "(${koreanAge}세)"
+
 
         return row
 
