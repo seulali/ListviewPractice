@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity() {
 
         studentListView.setOnItemLongClickListener { parent, view, position, id ->
 
-            val longclicedStudet = mStudentList[position]
+            mStudentList.removeAt(position)
 
-            Toast.makeText(this, "${longclicedStudet.name} 길게 클릭되었습니다.", Toast.LENGTH_SHORT).show()
+            mAdapter.notifyDataSetChanged()
 
             return@setOnItemLongClickListener true
 
